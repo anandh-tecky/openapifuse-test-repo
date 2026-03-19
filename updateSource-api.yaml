@@ -62,6 +62,9 @@ components:
           example: true
 
         # TRUNCATE
+        bio:
+          type: string
+          example: "Senior architect with 15+ years of experience in distributed systems."
 
         # ARRAY_FLATTEN
         tags:

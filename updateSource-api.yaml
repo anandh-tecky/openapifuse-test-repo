@@ -37,7 +37,10 @@ components:
           example: "28"
 
         # DATE_FORMAT_CONVERT
-     
+        registeredDate:
+          type: string
+          format: date
+          example: "2024-01-15"
 
         # DATE_TO_EPOCH
         createdAt:

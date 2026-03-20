@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: User & Product Service API
+  version: 2.0.0
+  description: Extended schema to test all transformation types
+
+paths:
+  /users/{userId}:
+    get:
+      operationId: getUserProfile
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+
+components:
+  schemas:
+
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+
+        # TYPE_CAST (string → integer)
+        ageText:
+          type: string
+          example: "28"
+
+        # DATE_FORMAT_CONVERT
+       
+
+        # DATE_TO_EPOCH
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-15T10:15:30Z"
+
+        # ENUM_REMAP
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - SUSPENDED
+
+        # BOOLEAN_INVERT
+        emailVerified:
+          type: boolean
+          example: true
+
+        # TRUNCATE
+        bio:
+          type: string
+          example: "Senior architect with 15+ years of experience in distributed systems."
+
+        # ARRAY_FLATTEN
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["java", "spring", "kafka"]
+
+        # ARRAY_WRAP
+        primaryPhone:
+          type: string
+          example: "+91-9999999999"
+
+        # CLAMP
+        rating:
+          type: number
+          minimum: 0
+          maximum: 10
+          example: 8.7
+
+        # MATH_OPERATION
+        salary:
+          type: number
+          example: 50000
+
+        address:
+          $ref: '#/components/schemas/Address'
+
+    Address:
+      type: object
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+
+        # FORMAT (number → formatted string)
+        price:
+          type: number
+          format: double
+          example: 1234.56
+
+        # ENUM_REMAP
+        stockStatus:
+          type: string
+          enum:
+            - AVAILABLE
+            - OUT_OF_STOCK
+            - PREORDER
+
+        # DATE_TO_EPOCH
+        launchDate:
+          type: string
+          format: date-time
+          example: "2024-02-01T00:00:00Z"
